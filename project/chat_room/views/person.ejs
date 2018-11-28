@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Chat Lobby</title>
+    <style>
+        body {
+            padding: 100px 500px;
+        }
+        #search{
+            margin-top:10px;
+        }
+
+
+    </style>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src='/js/bootstrap.min.js'></script>
+</head>
+
+<body class="text-center bg">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        創建房號
+    </button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">創建</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action='/create' method="post" id='create_form'>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">請輸入房名</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                placeholder="Pleease enter room name " name='room_name'>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id='createroom' class="btn btn-primary">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input name='search' type='text' class='form-control' placeholder="Search Room" id='search'>
+    <ul class="list-group">
+        <!-- <li class="list-group-item ">
+                    
+                </li> -->
+    </ul>
+</body>
+<script>
+    $("#search").on("input", function () {
+        $.ajax({
+            type: "POST",
+            url: '/search',
+            dataType: 'json',
+            data: "email=" + $(this).val(),
+            success:
+                function (person) {
+                    console.log(person);
+                }
+        })
+    });
+    $("#createroom").click(function () {
+        $('form').submit();
+    })
+</script>
+
+</html>
