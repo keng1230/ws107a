@@ -1,4 +1,16 @@
-# 學員的專案
+# Chat system 
 
-如果你在這門課有寫任何專案，請放到這個資料夾！
+## 完成功能
 
+* 聊天
+* 登入
+* 登出
+* 查詢房間號
+* 註冊
+
+## 使用技術
+
+* koa-session
+* mogodb
+* monogoose
+* ejs template
