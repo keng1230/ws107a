@@ -10,3 +10,4 @@ router
     .get('/person',sign.person)
     .post('/create',sign.create_room)
     .get('/room/:roomname',sign.get_room)
+    .get('/logout',sign.logout)

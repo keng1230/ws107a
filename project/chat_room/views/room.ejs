@@ -40,7 +40,7 @@
                     <form >
                         <div class="form-group">
                             <label for="fullname">請輸入姓名</label>
-                            <input type="email" class="form-control" name='name ' id="fullname" aria-describedby="emailHelp"
+                            <input type="text" class="form-control" name='name ' id="fullname" aria-describedby="emailHelp"
                                 placeholder="請輸入姓名">
                         </div>
                     </form>
@@ -65,16 +65,16 @@
                 // console.log($("#fullname").val());
             })
             var socket = io();
-            $('form').submit(function () {
-                var data={value:$('#m').val() ,name:$("#fullname").val()}
-                socket.emit('chat message', data); 
-                $('#m').val('');
-                return false;
+            $('form').submit(function () { //按下傳送時
+                var data={value:$('#m').val() ,name:$("#fullname").val()} //將剛剛輸入的名字 還有內容儲存下來
+                socket.emit('<%= room_id %>', data);  //傳送給對應的房號 裡面包含著內容
+                $('#m').val(''); //將內容清空
+                return false; //不跳頁
             });
-            socket.on('chat message', function (msg) {
+            socket.on('<%= room_id %>', function (msg) { //接收對應房號的訊息
             //   console.log(msg.value);
-                        $('#messages').append($('<li>').text(msg.name+":"+msg.value));
-                window.scrollTo(0, document.body.scrollHeight);
+                        $('#messages').append($('<li>').text(msg.name+":"+msg.value)); //當接收到時，將內容輸出
+                window.scrollTo(0, document.body.scrollHeight); //跟著字母滑動
             });
         });
     </script>

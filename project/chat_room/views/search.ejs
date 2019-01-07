@@ -57,12 +57,20 @@
     </div>
     <form action ='/search' method = 'post'>
         <input name='search' type='text' class='form-control' placeholder="Search Room" id='search_input'>
-        <button class='btn btn-primary' style ='margin-top:30px;' id='search'>搜索</button>
+        <button class='btn btn-primary' style ='margin:30px 0px;' id='search'>搜索</button>
     </form>
+    <ul class="list-group">
+        <% for(content of contents){ %> <!-- ejs 模板使用for 迴圈 -->
+            <a class="list-group-item " href ='/room/<%= content.name %>'> 
+                房間名:<%= content.name %>     <!-- 裏頭包含房名 -->                   
+                創建者:<%= content.roomuser %>     <!-- 裏頭包含創建房主 -->                    
+            </a>
+        <% } %> 
+    </ul>
 </body>
 <script>
-    $("#createroom").click(function () { //按下按鈕form 提交
-        $('#create_form').submit(); 
+    $("#createroom").click(function () {
+        $('#create_form').submit();
     })
 </script>
 
